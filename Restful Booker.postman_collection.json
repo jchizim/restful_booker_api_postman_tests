@@ -20,12 +20,9 @@
 					"raw": "{\n    \"username\" : \"admin\",\n    \"password\" : \"password123\"\n}"
 				},
 				"url": {
-					"raw": "https://restful-booker.herokuapp.com/auth",
-					"protocol": "https",
+					"raw": "{{restful_booker_url}}/auth",
 					"host": [
-						"restful-booker",
-						"herokuapp",
-						"com"
+						"{{restful_booker_url}}"
 					],
 					"path": [
 						"auth"
@@ -44,12 +41,9 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "https://restful-booker.herokuapp.com/booking",
-					"protocol": "https",
+					"raw": "{{restful_booker_url}}/booking",
 					"host": [
-						"restful-booker",
-						"herokuapp",
-						"com"
+						"{{restful_booker_url}}"
 					],
 					"path": [
 						"booking"
@@ -68,12 +62,9 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "https://restful-booker.herokuapp.com/booking?firstname=sally&lastname=brown",
-					"protocol": "https",
+					"raw": "{{restful_booker_url}}/booking?firstname=Mark&lastname=Ericsson",
 					"host": [
-						"restful-booker",
-						"herokuapp",
-						"com"
+						"{{restful_booker_url}}"
 					],
 					"path": [
 						"booking"
@@ -81,11 +72,11 @@
 					"query": [
 						{
 							"key": "firstname",
-							"value": "sally"
+							"value": "Mark"
 						},
 						{
 							"key": "lastname",
-							"value": "brown"
+							"value": "Ericsson"
 						}
 					]
 				}
@@ -102,12 +93,9 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "https://restful-booker.herokuapp.com/booking?checkin=2014-03-13&checkout=2014-05-21",
-					"protocol": "https",
+					"raw": "{{restful_booker_url}}/booking?checkin=2014-03-13&checkout=2014-05-21",
 					"host": [
-						"restful-booker",
-						"herokuapp",
-						"com"
+						"{{restful_booker_url}}"
 					],
 					"path": [
 						"booking"
@@ -136,12 +124,9 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "https://restful-booker.herokuapp.com/booking/1",
-					"protocol": "https",
+					"raw": "{{restful_booker_url}}/booking/1",
 					"host": [
-						"restful-booker",
-						"herokuapp",
-						"com"
+						"{{restful_booker_url}}"
 					],
 					"path": [
 						"booking",
@@ -153,6 +138,37 @@
 		},
 		{
 			"name": "Create Booking",
+			"event": [
+				{
+					"listen": "prerequest",
+					"script": {
+						"id": "0b800185-ed18-4fcf-a057-a1414e6799c8",
+						"exec": [
+							"var cur_total_price = pm.globals.get(\"total_price\");",
+							"",
+							"console.log(\"current total price\", cur_total_price);",
+							"",
+							"// Increment and update the current total price",
+							"cur_total_price++;",
+							"console.log (cur_total_price);",
+							"",
+							"postman.setGlobalVariable(\"total_price\", cur_total_price);",
+							""
+						],
+						"type": "text/javascript"
+					}
+				},
+				{
+					"listen": "test",
+					"script": {
+						"id": "5faf438f-ccd2-46a3-ba9b-77e0ef546d03",
+						"exec": [
+							""
+						],
+						"type": "text/javascript"
+					}
+				}
+			],
 			"request": {
 				"method": "POST",
 				"header": [
@@ -163,15 +179,12 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"firstname\" : \"Jimmy\",\n    \"lastname\" : \"Brown\",\n    \"totalprice\" : 111,\n    \"depositpaid\" : true,\n    \"bookingdates\" : {\n        \"checkin\" : \"2018-01-01\",\n        \"checkout\" : \"2019-01-01\"\n    },\n    \"additionalneeds\" : \"Breakfast\"\n}"
+					"raw": "{\n    \"firstname\" : \"Jimbo\",\n    \"lastname\" : \"Brown\",\n    \"totalprice\" : \"{{total_price}}\",\n    \"depositpaid\" : true,\n    \"bookingdates\" : {\n        \"checkin\" : \"2018-12-06\",\n        \"checkout\" : \"2019-12-01\"\n    },\n    \"additionalneeds\" : \"Breakfast\"\n}"
 				},
 				"url": {
-					"raw": "https://restful-booker.herokuapp.com/booking",
-					"protocol": "https",
+					"raw": "{{restful_booker_url}}/booking",
 					"host": [
-						"restful-booker",
-						"herokuapp",
-						"com"
+						"{{restful_booker_url}}"
 					],
 					"path": [
 						"booking"
@@ -200,15 +213,12 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"firstname\" : \"James\",\n    \"lastname\" : \"Brown\",\n    \"totalprice\" : 111,\n    \"depositpaid\" : true,\n    \"bookingdates\" : {\n        \"checkin\" : \"2018-01-01\",\n        \"checkout\" : \"2019-01-01\"\n    },\n    \"additionalneeds\" : \"Breakfast\"\n}"
+					"raw": "{\n    \"firstname\" : \"Jamezo\",\n    \"lastname\" : \"Brown\",\n    \"totalprice\" : 111,\n    \"depositpaid\" : true,\n    \"bookingdates\" : {\n        \"checkin\" : \"2018-01-01\",\n        \"checkout\" : \"2019-01-01\"\n    },\n    \"additionalneeds\" : \"Breakfast\"\n}"
 				},
 				"url": {
-					"raw": "https://restful-booker.herokuapp.com/booking/1",
-					"protocol": "https",
+					"raw": "{{restful_booker_url}}/booking/1",
 					"host": [
-						"restful-booker",
-						"herokuapp",
-						"com"
+						"{{restful_booker_url}}"
 					],
 					"path": [
 						"booking",
@@ -221,7 +231,7 @@
 		{
 			"name": "Partial Update Booking",
 			"request": {
-				"method": "PUT",
+				"method": "PATCH",
 				"header": [
 					{
 						"key": "Content-Type",
@@ -238,15 +248,12 @@
 				],
 				"body": {
 					"mode": "raw",
-					"raw": "{\n    \"firstname\" : \"James\",\n    \"lastname\" : \"Brown\"\n}"
+					"raw": "{\n    \"firstname\" : \"Jamezerino\",\n    \"lastname\" : \"Brown\"\n}"
 				},
 				"url": {
-					"raw": "https://restful-booker.herokuapp.com/booking/1",
-					"protocol": "https",
+					"raw": "{{restful_booker_url}}/booking/1",
 					"host": [
-						"restful-booker",
-						"herokuapp",
-						"com"
+						"{{restful_booker_url}}"
 					],
 					"path": [
 						"booking",
@@ -272,12 +279,9 @@
 				],
 				"body": {},
 				"url": {
-					"raw": "https://restful-booker.herokuapp.com/booking/1",
-					"protocol": "https",
+					"raw": "{{restful_booker_url}}/booking/1",
 					"host": [
-						"restful-booker",
-						"herokuapp",
-						"com"
+						"{{restful_booker_url}}"
 					],
 					"path": [
 						"booking",
@@ -297,12 +301,9 @@
 					"raw": ""
 				},
 				"url": {
-					"raw": "https://restful-booker.herokuapp.com/ping",
-					"protocol": "https",
+					"raw": "{{restful_booker_url}}/ping",
 					"host": [
-						"restful-booker",
-						"herokuapp",
-						"com"
+						"{{restful_booker_url}}"
 					],
 					"path": [
 						"ping"
@@ -310,6 +311,43 @@
 				}
 			},
 			"response": []
+		}
+	],
+	"auth": {
+		"type": "basic",
+		"basic": [
+			{
+				"key": "username",
+				"value": "admin",
+				"type": "string"
+			},
+			{
+				"key": "password",
+				"value": "password123",
+				"type": "string"
+			}
+		]
+	},
+	"event": [
+		{
+			"listen": "prerequest",
+			"script": {
+				"id": "36e41416-ecf0-4473-909c-1b91e7743f8e",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
+		},
+		{
+			"listen": "test",
+			"script": {
+				"id": "6628dde8-9cd7-415d-986a-d976131e78ab",
+				"type": "text/javascript",
+				"exec": [
+					""
+				]
+			}
 		}
 	]
 }
